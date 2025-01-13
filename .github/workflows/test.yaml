@@ -1,0 +1,25 @@
+name: Arduino Compile and Upload
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@v1
+    - name: Install core for Arduino Uno
+      run: |
+        arduino-cli core update-index
+        arduino-cli core install esp32:esp32
+    - name: Compile.ino file
+      run: |
+        arduino-cli compile --fqbn esp32:esp32:alksesp32 test.ino
+    - name: Upload compiled files
+      uses: actions/upload-artifact@v2
+      with:
+        name: compiled-firmware
+        path: build/*
