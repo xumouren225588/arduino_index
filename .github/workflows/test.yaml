@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Setup Arduino CLI
       uses: arduino/setup-arduino-cli@v1
     - name: Install core for Arduino Uno
@@ -19,7 +19,7 @@ jobs:
       run: |
         arduino-cli compile --fqbn esp32:esp32:alksesp32 test.ino
     - name: Upload compiled files
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: compiled-firmware
         path: build/*
