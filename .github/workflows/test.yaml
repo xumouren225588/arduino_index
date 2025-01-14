@@ -17,9 +17,9 @@ jobs:
         arduino-cli core install esp32:esp32
     - name: Compile.ino file
       run: |
-        arduino-cli compile --fqbn esp32:esp32:alksesp32 test/test.ino
+        arduino-cli compile --fqbn esp32:esp32:alksesp32 test/test.ino --build-path build
     - name: Upload compiled files
       uses: actions/upload-artifact@v4
       with:
         name: compiled-firmware
-        path: test/build/*
+        path: build/*
